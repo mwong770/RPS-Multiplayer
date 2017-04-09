@@ -1,0 +1,59 @@
+body {
+	margin-left: 30%;
+	margin-right: 30%;
+
+}
+
+.player1Options, .player2Options {
+	width: 180px;
+	height: auto;
+}
+
+#scissors {
+	width: 220px;
+	height: auto;
+}
+
+.playerButtons {
+	margin-left: 35%;
+}
+
+.gameinfo {
+	margin-left: 25%;
+}
+
+#resetScore {
+	margin-left: 20%;
+}
+
+#p1Results {
+	margin-left: 20%;
+}
+#p2Results {
+	margin-left: 20%;
+}
+#p1choice {
+	margin-left: 30%;
+}
+#p2choice {
+	margin-left: 30%;
+}
+
+#message {
+	color: red;
+}
+
+#displayChats {
+	width: 500px;
+	height: 150px;
+	border: solid 2px blue;
+	margin-bottom: 10px;
+}
+
+#chat {
+	width: 500px;
+	height: 25px;
+
+}
+
+
