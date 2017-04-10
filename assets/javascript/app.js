@@ -1,5 +1,3 @@
-//TODO: check for bugs, especially related to timeout
-
 
   //Initializes Firebase
   var config = {
@@ -27,7 +25,7 @@
   var playerNumber = 0;
   var message;
 
-  //resets values to 0 locally and in Firebase
+  //resets all values locally and in Firebase
   function resetGame() {
       $("#message").hide();
       player1Name = "";
@@ -201,8 +199,8 @@ $(document).ready(function(){
       $(".displayChats").html(madeChoices.message);
       if (playerNumber == 1){
           $("#player2Name").html("Player 2 is " + madeChoices.player2Name);
-        }else if (playerNumber == 2){
-          $("#player1Name").html("Player 1 is " + madeChoices.player1Name);
+        } else if (playerNumber == 2){
+            $("#player1Name").html("Player 1 is " + madeChoices.player1Name);
       }
       if (!madeChoices.player1Choice == "" && !madeChoices.player2Choice == "") {  
         player1Choice = madeChoices.player1Choice;
@@ -238,6 +236,7 @@ $(document).ready(function(){
                 message: message
             });
         });
+        $(".chat").val("");
     });
 
 });
