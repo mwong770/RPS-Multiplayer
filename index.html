@@ -1,57 +1,109 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
+
 	<title> RPS - Mulitiplayer </title>
-	<link href="assets/css/style.css" rel="stylesheet">
-	<script src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
+
+	<!--link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
 </head>
+
 <body>
 
-	<h1> Rock, Paper, Scissors </h1>
+	<div class="container">
 
-	<input type="text" id="name" placeholder="ex. Bob" />
-    <button type="submit" id="submitName" class="btn btn-default">Submit</button>
+		<h1> Rock, Paper, Scissors </h1>
 
-	<div id="player1OptionsDiv">
-        <img id="player1Rock" class="player1Options" value="rock" src="assets/images/rock.png">
-        <img id="player1Paper" class="player1Options" value="paper" src="assets/images/paper.png">
-        <img id="player1Scissors" class="player1Options" value="scissors" src="assets/images/scissors.png">
-	</div>
+		<div id="nameDiv">
+			<input type="text" id="name" placeholder="ex. Bob" />
+	  		<button type="submit" id="submitName" class="btn btn-default">Submit</button>
+	  	</div>
 
-	<div id="player2OptionsDiv">
-		<img id="player2Rock" class="player2Options" value="rock" src="assets/images/rock.png">
-        <img id="player2Paper" class="player2Options" value="paper" src="assets/images/paper.png">
-        <img id="player2Scissors" class="player2Options" value="scissors" src="assets/images/scissors.png">
-	</div>
+		<div class="row optionsDiv" id="player1OptionsDiv">
+			<div class="col-xs-4 col-lg-offset-2 col-lg-2">
+			    <img id="player1Rock" class="player1Options" value="rock" src="assets/images/rock.png">
+			</div>
+			<div class="col-xs-4 col-lg-offset-1 col-lg-2">
+			    <img id="player1Paper" class="player1Options" value="paper" src="assets/images/paper.png">
+			</div>
+			<div class="col-xs-4 col-lg-offset-1 col-lg-2">
+			    <img id="player1Scissors" class="player1Options" value="scissors" src="assets/images/scissors.png">
+			</div>
+		</div>
 
-	 <p id="message">Choose rock, paper, or scissors!</p>
+		<div class="row optionsDiv" id="player2OptionsDiv">
+			<div class="col-xs-4 col-lg-offset-2 col-lg-2">
+			    <img id="player2Rock" class="player2Options" value="rock" src="assets/images/rock.png">
+			</div>
+			<div class="col-xs-4 col-lg-offset-1 col-lg-2">
+			    <img id="player2Paper" class="player2Options" value="paper" src="assets/images/paper.png">
+			</div>
+			<div class="col-xs-4 col-lg-offset-1 col-lg-2">
+			    <img id="player2Scissors" class="player2Options" value="scissors" src="assets/images/scissors.png">
+			</div>
+		</div>
 
-	 <button id="startOver"> Reset Score </button>
+		<p id="message"> Choose rock, paper, or scissors! </p>
 
-	 <div id="player1ScoreDiv">
-	 	<h4> <span id="player1Name">Waiting for player 1<span></h4>
-	 	<p id='player1Wins'> </p>
-	 	<p id='player1Losses'> </p>
-	 	<p id='player1Ties'> </p>
-	 </div>
+		<div class="row">
+			<div class="col-xs-12" id="startOverDiv">
+				<button id="startOver" class="btn btn-default"> Reset Score </button>
+			</div>
+		</div>
+		
+		<div class="row" id="gameRow">
+			<div class="col-xs-6 col-sm-3 col-lg-3">
+				<div  id="player1ScoreDiv">
+				 	<h4> <span id="player1Name"> Waiting for player 1 </span></h4>
+				 	<p> Wins: <span id='player1Wins'>0</span></p>
+				 	<p> Losses: <span id='player1Losses'>0</span></p>
+				 	<p> Ties: <span id='player1Ties'>0</span></p>
+				</div>
+			</div>
 
-	 <div id="player2ScoreDiv">
-	 	<h4> <span id="player2Name">Waiting for player 2<span></h4>
-	 	<p id='player2Wins'> </p>
-	 	<p id='player2Losses'> </p>
-	 	<p id='player2Ties'> </p>
-	 </div>
+			<div class="col-xs-0 col-sm-6 col-lg-6">
+				<div id="chatCorner">
+				 	<div class="displayChatsDiv">
+				 		<h4>Chat Corner</h4>
+				 		<p class="displayChats"></p>
+				 	</div>
+				 	<input type="text" chat="chat" placeholder="type message here"/>
+			    	<button type="submit" class="submitChats" class="btn btn-default">Send Message</button>
+				</div>
+			</div>
+		
+			<div class="col-xs-6 col-sm-3 col-lg-3">
+				<div  id="player2ScoreDiv">
+				 	<h4><span id="player2Name"> Waiting for player 2 </span></h4>
+				 	<p> Wins: <span id='player2Wins'>0</span></p>
+				 	<p> Losses: <span id='player2Losses'>0</span></p>
+				 	<p> Ties: <span id='player2Ties'>0</span></p>
+				</div>
+			</div>
+		</div>
 
-	 <div id="chatCorner">
-	 	<div id="displayChats"></div>
-	 	<input type="text" id="chat" placeholder="type message here" />
-    	<button type="submit" id="submitChats" class="btn btn-default">Send Message</button>
+		<div class="row" id="chatCorner2">
+			<div class="col-xs-12">
+				<div>
+				 	<div class="displayChatsDiv">
+				 		<h4>Chat Corner</h4>
+				 		<p class="displayChats"></p>
+				 	</div>
+				 	<input type="text" class="chat" placeholder="type message here"/>
+			    	<button type="submit" class="submitChats" class="btn btn-default">Send Message</button>
+				</div>
+			</div>
+		</div>
 
-	 </div>
-
-
+	</div><!--ends container-->
 	
+	<script src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
 	<script type="text/javascript" src="assets/javascript/app.js"></script>	
 </body>
 </html>

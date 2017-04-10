@@ -1,4 +1,4 @@
-//Need Chat
+//TODO: check for bugs, especially related to timeout
 
 
   //Initializes Firebase
@@ -56,14 +56,11 @@
   }
 
   function compareChoices() {
-      console.log("player1: " + player1Choice);
-      console.log("player2: " + player2Choice);
 
         if(player1Choice == player2Choice) {
             
             $("#message").html("It's a tie. Play again to see who wins.").show();
-            $('#player1Ties').html("Ties: " + ties);
-            $('#player2Ties').html("Ties: " + ties);
+
             if (playerNumber == 1){
               ties++;
               database.ref().update({
@@ -97,7 +94,7 @@
           
         } 
 
-       setTimeout(resetChoices, 5000);//may cause bug - player chooses before clears
+       setTimeout(resetChoices, 5000);
   }
 
   function resetChoices() {
@@ -162,11 +159,6 @@ $(document).ready(function(){
                 $("#message").html("We already have 2 players. Please wait your turn.");
               }
 
-
-
-              console.log(player1Name);
-              console.log(player2Name);
-              console.log(playerNumber);
             if (playerNumber == 1){
                 $('.playerButtons').hide();
                 $('#message').hide();
@@ -184,9 +176,6 @@ $(document).ready(function(){
             }
 
         });
-       
-        
-
 
     });
 
@@ -195,8 +184,6 @@ $(document).ready(function(){
         database.ref().update({
             player1Choice: player1Choice
         });
-        console.log("player1 in 1: " + player1Choice);
-        console.log("player2 in 1: " + player2Choice);
     });
 
     $('.player2Options').on('click', function(){
@@ -204,8 +191,6 @@ $(document).ready(function(){
         database.ref().update({
             player2Choice: player2Choice
         });
-        console.log("player1 in 2: " + player1Choice);
-        console.log("player2 in 2: " + player2Choice);
     });
 
     //when Firebase values change, 
@@ -213,7 +198,7 @@ $(document).ready(function(){
     database.ref().on('value', function(snapshot){
       var madeChoices = snapshot.val();
   
-      $("#displayChats").html(madeChoices.message);
+      $(".displayChats").html(madeChoices.message);
       if (playerNumber == 1){
           $("#player2Name").html("Player 2 is " + madeChoices.player2Name);
         }else if (playerNumber == 2){
@@ -230,13 +215,12 @@ $(document).ready(function(){
         if(!madeChoices.gameOver){
           compareChoices();
         }
-        $('#player1Ties').html("Ties: " + ties);
-        $('#player2Ties').html("Ties: " + ties);
-        $('#player1Wins').html("Wins: " + player1Wins);
-        $('#player2Losses').html("Losses: " + player2Losses);
-        $('#player2Wins').html("Wins: " + player2Wins);
-        $('#player1Losses').html("Losses: " + player1Losses);
-
+        $('#player1Ties').html(ties);
+        $('#player2Ties').html(ties);
+        $('#player1Wins').html(player1Wins);
+        $('#player2Losses').html(player2Losses);
+        $('#player2Wins').html(player2Wins);
+        $('#player1Losses').html(player1Losses);
 
       }
 
@@ -246,15 +230,14 @@ $(document).ready(function(){
         resetGame();
     });
 
-        $('#submitChats').on('click', function(){
-            database.ref().once('value', function(snapshot){
-                message = snapshot.val().message + "<br/>";
-                message = message + $("#chat").val().trim();
-                      database.ref().update({
-                        message: message
-                      });
+    $('.submitChats').on('click', function(){
+        database.ref().once('value', function(snapshot){
+            message = snapshot.val().message + "<br/>";
+            message = message + $(".chat").val().trim();
+            database.ref().update({
+                message: message
             });
-
         });
+    });
 
 });

@@ -1,59 +1,245 @@
-body {
-	margin-left: 30%;
-	margin-right: 30%;
+h1 {
+	text-align: center;
+	font-weight: bold;
+	color: blue;
+	font-size: 70px;
+	margin: 10px auto 20px auto;
+}
 
+#nameDiv {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#name {
+	width: 220px;
+	height: 35px;
+	padding-left: 10px;
+	font-size: 18px;
+}
+
+#submitName, #startOver, .submitChats {
+	font-size: 17px;
+	padding: 4px;
+}
+
+.optionsDiv {
+	margin: 0 auto;
+	padding: 0;
 }
 
 .player1Options, .player2Options {
-	width: 180px;
+	width: 100%;
 	height: auto;
 }
 
 #scissors {
-	width: 220px;
+	width: 100%;
 	height: auto;
-}
-
-.playerButtons {
-	margin-left: 35%;
-}
-
-.gameinfo {
-	margin-left: 25%;
-}
-
-#resetScore {
-	margin-left: 20%;
-}
-
-#p1Results {
-	margin-left: 20%;
-}
-#p2Results {
-	margin-left: 20%;
-}
-#p1choice {
-	margin-left: 30%;
-}
-#p2choice {
-	margin-left: 30%;
 }
 
 #message {
 	color: red;
+	text-align: center;
+	font-size: 20px;
 }
 
-#displayChats {
-	width: 500px;
-	height: 150px;
+#startOverDiv {
+	text-align: center;
+	margin: 10px auto 15px auto;
+}
+
+h4 {
+	color: blue;
+	font-size: 23px;
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+#player1ScoreDiv, #player2ScoreDiv {
+	height: 185px;
+	width: 100%;
 	border: solid 2px blue;
+	font-size: 20px;
+	text-align: center;
+	padding: 20px;
+	line-height: 1.5;
+	margin: 0 auto 10px auto;
+}
+
+.displayChatsDiv {
+	width: 100%;
+	height: 185px;
+	border: solid 2px blue;
+	margin: 0 auto 10px auto;
+	font-size: 20px;
+	padding: 20px;
+}
+
+.chat {
+	width: 100%;
+	height: 35px;
+	text-align: center;
+	font-size: 19px;
 	margin-bottom: 10px;
 }
 
-#chat {
-	width: 500px;
-	height: 25px;
+#chatCorner {
+	margin: 0 auto;
+	text-align: center;
+}
+
+#chatCorner2 {
+	display: none;
+}
+
+/************ MEDIA 1200 MEDIA 1200 MEDIA 1200 MEDIA 1200 MEDIA 1200 *******************************/
+
+@media screen and (max-width: 1200px) {
+
+	.optionsDiv {
+		text-align: center;
+	}
+
+	.player1Options, .player2Options {
+		width: 50%;
+	}
+
+	#scissors {
+		width: 50%;
+	}
+
+	h4 {
+		font-size: 21px;
+	}
+
+/************ MEDIA 980 MEDIA 980 MEDIA 980 MEDIA 980 MEDIA 980 *******************************/
+
+@media screen and (max-width: 980px) {
+
+	h1 {
+		font-size: 60px;
+	}
+
+	#name {
+		width: 200px;
+	}
+	
+	.optionsDiv {
+		text-align: center;
+	}
+
+	.player1Options, .player2Options {
+		width: 60%;
+	}
+
+	#scissors {
+		width: 60%;
+	}
 
 }
+
+/************ MEDIA 768 MEDIA 768 MEDIA 768 MEDIA 768 MEDIA 768 *******************************/
+
+@media screen and (max-width: 768px) {
+
+	#name {
+		width: 180px;
+	}
+
+	#player1ScoreDiv, #player2ScoreDiv {
+		font-size: 18px;
+	}
+
+	h4 {
+		font-size: 20px;
+	}
+
+	#gameRow {
+		margin: 0 auto;
+	}
+
+	#player1ScoreDiv {
+		width: 102%;
+	}
+
+	#player2ScoreDiv {
+		width: 102%;
+		margin-left: -2%;
+	}
+
+	#chatCorner {
+		display: none;
+	}
+
+	#chatCorner2 {
+		display: block;
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+
+}
+
+/************ MEDIA 640 MEDIA 640 MEDIA 640 MEDIA 640 MEDIA 640 *******************************/
+
+@media screen and (max-width: 640px) {
+
+	h1 {
+		font-size: 48px;
+	}
+
+}
+
+/************ MEDIA 520 MEDIA 520 MEDIA 520 MEDIA 520 MEDIA 520 *******************************/
+
+@media screen and (max-width: 520px) {
+
+	h1 {
+		font-size: 40px;
+	}
+
+	.optionsDiv {
+		text-align: center;
+	}
+
+	.player1Options, .player2Options {
+		width: 80%;
+	}
+
+	#scissors {
+		width: 80%;
+	}
+
+	#gameRow {
+		margin: 0 auto;
+	}
+
+	#player1ScoreDiv {
+		width: 105%;
+	}
+
+	#player2ScoreDiv {
+		width: 105%;
+		margin-left: -5%;
+	}
+
+	#chatCorner2 {
+		display: block;
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+
+}
+
+
+
+
+
+
+
 
 
