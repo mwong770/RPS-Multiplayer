@@ -24,6 +24,7 @@
   var player2Losses;
   var playerNumber = 0;
   var message;
+  var element;
 
   //resets all values locally and in Firebase
   function resetGame() {
@@ -197,11 +198,15 @@ $(document).ready(function(){
       var madeChoices = snapshot.val();
   
       $(".displayChats").html(madeChoices.message);
+
+      $(".displayChats2").html(madeChoices.message);
+
       if (playerNumber == 1){
           $("#player2Name").html("Player 2 is " + madeChoices.player2Name);
         } else if (playerNumber == 2){
             $("#player1Name").html("Player 1 is " + madeChoices.player1Name);
       }
+
       if (!madeChoices.player1Choice == "" && !madeChoices.player2Choice == "") {  
         player1Choice = madeChoices.player1Choice;
         player2Choice = madeChoices.player2Choice;
@@ -219,7 +224,6 @@ $(document).ready(function(){
         $('#player2Losses').html(player2Losses);
         $('#player2Wins').html(player2Wins);
         $('#player1Losses').html(player1Losses);
-
       }
 
     });
@@ -228,15 +232,54 @@ $(document).ready(function(){
         resetGame();
     });
 
+    
+
     $('.submitChats').on('click', function(){
+
+        var player1Uppercase = player1Name.toUpperCase();
+        var player2Uppercase = player2Name.toUpperCase();
+
         database.ref().once('value', function(snapshot){
+
             message = snapshot.val().message + "<br/>";
-            message = message + $(".chat").val().trim();
+
+            if (playerNumber == 1) {
+                message = message + player1Uppercase + ": " + $("#chat").val().trim();
+            }   else if (playerNumber == 2) {
+                    message = message + player2Uppercase + ": " + $("#chat").val().trim();
+                }
+
             database.ref().update({
                 message: message
             });
+            element = document.getElementById("displayChats");//was div
+            element.scrollTop = element.scrollHeight;
+            $("#chat").val("");
         });
-        $(".chat").val("");
     });
 
-});
+    $('.submitChats2').on('click', function(){
+
+        var player1Uppercase = player1Name.toUpperCase();
+        var player2Uppercase = player2Name.toUpperCase();
+
+        database.ref().once('value', function(snapshot){
+
+            message = snapshot.val().message + "<br/>";
+
+            if (playerNumber == 1) {
+                message = message + player1Uppercase + ": " + $("#chat2").val().trim();
+            }   else if (playerNumber == 2) {
+                    message = message + player2Uppercase + ": " + $("#chat2").val().trim();
+                }
+
+            database.ref().update({
+                message: message
+            });
+            element = document.getElementById("displayChats2");//was div
+            element.scrollTop = element.scrollHeight;
+            $("#chat2").val("");
+        });
+    });
+
+});//ends document.ready
