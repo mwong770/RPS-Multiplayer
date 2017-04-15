@@ -1,12 +1,12 @@
 
   //Initializes Firebase
   var config = {
-    apiKey: "AIzaSyBWNxNBYOde4pP0aFD1biRlLXfTAFHlXnU",
-    authDomain: "rps-multiplayer-2aff3.firebaseapp.com",
-    databaseURL: "https://rps-multiplayer-2aff3.firebaseio.com",
-    projectId: "rps-multiplayer-2aff3",
-    storageBucket: "rps-multiplayer-2aff3.appspot.com",
-    messagingSenderId: "595616827337"
+      apiKey: "AIzaSyBWNxNBYOde4pP0aFD1biRlLXfTAFHlXnU",
+      authDomain: "rps-multiplayer-2aff3.firebaseapp.com",
+      databaseURL: "https://rps-multiplayer-2aff3.firebaseio.com",
+      projectId: "rps-multiplayer-2aff3",
+      storageBucket: "rps-multiplayer-2aff3.appspot.com",
+      messagingSenderId: "595616827337"
   };
 
   firebase.initializeApp(config);
@@ -63,7 +63,8 @@
             if (playerNumber == 1){
               ties++;
               database.ref().update({
-                  ties: ties
+                  ties: ties,
+                  gameOver: true
               });
             }
 
@@ -90,87 +91,82 @@
         } else if(player1Choice == "paper" && player2Choice == "rock"){
             $("#message").html("Player 1 wins. Paper beats rock.").show();
             player1Win();
-          
         } 
+        
+        setTimeout(resetChoices, 3000);
 
-       setTimeout(resetChoices, 5000);
   }
 
   function resetChoices() {
       $("#message").hide();
+      $("#player1Choice").empty();
+      $("#player2Choice").empty();
       player2Choice = "";
       player1Choice = "";
       database.ref().update({
           player2Choice: player2Choice,
           player1Choice: player1Choice,
-          gameOver:false
+          gameOver: false
       });
   }
 
   //updates score when player 1 wins
   function player1Win() {
-    if (playerNumber == 1) {
-      player1Wins++;
-      player2Losses++;
-      database.ref().update({
-          player1Wins: player1Wins,
-          player2Losses: player2Losses,
-          gameOver: true
-      });
-    }
+      if (playerNumber == 1) {
+          player1Wins++;
+          player2Losses++;
+          database.ref().update({
+              player1Wins: player1Wins,
+              player2Losses: player2Losses,
+              gameOver: true
+          });
+      }
   }
 
   //updates scores when player 2 wins
   function player2Win() {
-    if (playerNumber == 1) {
-      player2Wins++;
-      player1Losses++;
-      database.ref().update({
-          player2Wins: player2Wins,
-          player1Losses: player1Losses,
-          gameOver: true
-      });
-    }
+      if (playerNumber == 1) {
+          player2Wins++;
+          player1Losses++;
+          database.ref().update({
+              player2Wins: player2Wins,
+              player1Losses: player1Losses,
+              gameOver: true
+          });
+      }
   }
 
 $(document).ready(function(){
 
-    $('#player2OptionsDiv').hide();
-
-    //resetGame();
-
     $("#submitName").on('click', function() {
 
         database.ref().once('value', function(snapshot){
+            //if no player1, #name input = player1
             if (snapshot.val().player1Name == "") {
                 player1Name = $("#name").val().trim();
                 playerNumber = 1;
                 database.ref().update({
                     player1Name: player1Name
                 });
+                $("#name").val("");
+            //if no player2, #name input = player2
             } else if (snapshot.val().player2Name == "") {
                   player2Name = $("#name").val().trim();
                   playerNumber = 2;
                   database.ref().update({
                       player2Name: player2Name
                   });
+                  $("#name").val("");
             } else {
                 $("#message").html("We already have 2 players. Please wait your turn.");
               }
 
             if (playerNumber == 1){
-                $('.playerButtons').hide();
-                $('#message').hide();
                 $('#player1Name').html("Hello, " + player1Name);
                 $("#message").html("Choose rock, paper, or scissors!").show();
 
             } else if(playerNumber == 2){
-
-                $('#player2OptionsDiv').show();
-                $('#player1OptionsDiv').hide();
-                $('.playerButtons').hide();
                 $("#player2Name").html("Hello, " + player2Name);
-                $('#message').hide();
                 $("#message").html("Choose rock, paper, or scissors!").show();
             }
 
@@ -179,17 +175,20 @@ $(document).ready(function(){
     });
 
     $('.player1Options').on('click', function(){
-        var player1Choice = $(this).attr('value');
-        database.ref().update({
-            player1Choice: player1Choice
-        });
-    });
 
-    $('.player2Options').on('click', function(){
-        var player2Choice = $(this).attr('value');
-        database.ref().update({
-            player2Choice: player2Choice
-        });
+        if (playerNumber == 1) {
+            var player1Choice = $(this).attr('value');
+            database.ref().update({
+                player1Choice: player1Choice
+            });
+            $("#player1Choice").html(player1Choice);
+        }   else if (playerNumber == 2) {
+                var player2Choice = $(this).attr('value');
+                database.ref().update({
+                    player2Choice: player2Choice
+                });
+                $("#player2Choice").html(player2Choice);
+            }
     });
 
     //when Firebase values change, 
@@ -208,22 +207,24 @@ $(document).ready(function(){
       }
 
       if (!madeChoices.player1Choice == "" && !madeChoices.player2Choice == "") {  
-        player1Choice = madeChoices.player1Choice;
-        player2Choice = madeChoices.player2Choice;
-        player1Wins = madeChoices.player1Wins;
-        player1Losses = madeChoices.player1Losses;
-        player2Wins = madeChoices.player2Wins;
-        player2Losses = madeChoices.player2Losses;
-        ties = madeChoices.ties;
-        if(!madeChoices.gameOver){
-          compareChoices();
-        }
-        $('#player1Ties').html(ties);
-        $('#player2Ties').html(ties);
-        $('#player1Wins').html(player1Wins);
-        $('#player2Losses').html(player2Losses);
-        $('#player2Wins').html(player2Wins);
-        $('#player1Losses').html(player1Losses);
+          player1Choice = madeChoices.player1Choice;
+          player2Choice = madeChoices.player2Choice;
+          player1Wins = madeChoices.player1Wins;
+          player1Losses = madeChoices.player1Losses;
+          player2Wins = madeChoices.player2Wins;
+          player2Losses = madeChoices.player2Losses;
+          ties = madeChoices.ties;
+          if(!madeChoices.gameOver){
+            compareChoices();
+          }
+          $('#player1Ties').html(ties);
+          $('#player2Ties').html(ties);
+          $('#player1Wins').html(player1Wins);
+          $('#player2Losses').html(player2Losses);
+          $('#player2Wins').html(player2Wins);
+          $('#player1Losses').html(player1Losses);
+          $("#player1Choice").html(player1Choice);
+          $("#player2Choice").html(player2Choice);
       }
 
     });
@@ -231,8 +232,6 @@ $(document).ready(function(){
     $('#startOver').on('click', function(){
         resetGame();
     });
-
-    
 
     $('.submitChats').on('click', function(){
 
@@ -252,7 +251,7 @@ $(document).ready(function(){
             database.ref().update({
                 message: message
             });
-            element = document.getElementById("displayChats");//was div
+            element = document.getElementById("displayChats");
             element.scrollTop = element.scrollHeight;
             $("#chat").val("");
         });
@@ -276,7 +275,7 @@ $(document).ready(function(){
             database.ref().update({
                 message: message
             });
-            element = document.getElementById("displayChats2");//was div
+            element = document.getElementById("displayChats2");
             element.scrollTop = element.scrollHeight;
             $("#chat2").val("");
         });

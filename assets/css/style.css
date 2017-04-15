@@ -48,6 +48,16 @@ h1 {
 	font-size: 20px;
 }
 
+#player1Choice, #player2Choice {
+	height: 90px;
+	width: 100%;
+	overflow: visible;
+}
+
+.score {
+	margin-right: 7%;
+}
+
 #startOverDiv {
 	text-align: center;
 	margin: 10px auto 15px auto;
@@ -66,7 +76,7 @@ h4 {
 	border: solid 2px blue;
 	font-size: 20px;
 	text-align: center;
-	padding: 20px;
+	padding: 5px;
 	line-height: 1.5;
 	margin: 0 auto 10px auto;
 }
@@ -77,7 +87,7 @@ h4 {
 	border: solid 2px blue;
 	margin: 0 auto 10px auto;
 	font-size: 20px;
-	padding: 20px;	
+	padding: 10px;	
 }
 
 #chat, #chat2 {
@@ -102,9 +112,20 @@ h4 {
 	display: none;
 }
 
+#scoreDiv {
+	position: absolute;
+	bottom: 10px;
+	left: 0px;
+	width: 100%;
+}
+
 /************ MEDIA 1200 MEDIA 1200 MEDIA 1200 MEDIA 1200 MEDIA 1200 *******************************/
 
 @media screen and (max-width: 1200px) {
+
+	h1 {
+		color: red;
+	}
 
 	.optionsDiv {
 		text-align: center;
@@ -119,8 +140,10 @@ h4 {
 	}
 
 	h4 {
-		font-size: 21px;
+		font-size: 20px;
 	}
+
+}
 
 /************ MEDIA 980 MEDIA 980 MEDIA 980 MEDIA 980 MEDIA 980 *******************************/
 
@@ -128,6 +151,7 @@ h4 {
 
 	h1 {
 		font-size: 60px;
+		color: blue;
 	}
 
 	#name {
@@ -146,11 +170,19 @@ h4 {
 		width: 60%;
 	}
 
+	.score {
+		margin-right: 3%;
+	}
+
 }
 
 /************ MEDIA 768 MEDIA 768 MEDIA 768 MEDIA 768 MEDIA 768 *******************************/
 
 @media screen and (max-width: 768px) {
+
+	h1 {
+		color: green;
+	}
 
 	#name {
 		width: 180px;
@@ -161,20 +193,11 @@ h4 {
 	}
 
 	h4 {
-		font-size: 20px;
+		font-size: 21px;
 	}
 
 	#gameRow {
 		margin: 0 auto;
-	}
-
-	#player1ScoreDiv {
-		width: 102%;
-	}
-
-	#player2ScoreDiv {
-		width: 102%;
-		margin-left: -2%;
 	}
 
 	#chatCorner {
@@ -189,6 +212,10 @@ h4 {
 		text-align: center;
 	}
 
+	.score {
+		margin-right: 7%;
+	}
+
 }
 
 /************ MEDIA 640 MEDIA 640 MEDIA 640 MEDIA 640 MEDIA 640 *******************************/
@@ -197,6 +224,7 @@ h4 {
 
 	h1 {
 		font-size: 48px;
+		color: purple;
 	}
 
 }
@@ -207,6 +235,7 @@ h4 {
 
 	h1 {
 		font-size: 40px;
+		color: red;
 	}
 
 	.optionsDiv {
@@ -221,17 +250,8 @@ h4 {
 		width: 80%;
 	}
 
-	#gameRow {
-		margin: 0 auto;
-	}
-
-	#player1ScoreDiv {
-		width: 105%;
-	}
-
-	#player2ScoreDiv {
-		width: 105%;
-		margin-left: -5%;
+	h4 {
+		font-size: 20px;
 	}
 
 	#chatCorner2 {
