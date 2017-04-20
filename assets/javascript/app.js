@@ -30,6 +30,7 @@
   var element;
   var player2;
   var player1;
+  var playerTurn = "";
 
   $("#player1Message").hide();
   $("#player2Message").hide();
@@ -83,11 +84,19 @@
   database.ref("Messages/").update({
       player1Message: player1Message,
       player2Message: player2Message
+  });
+
+  database.ref("Turn/").update({
+      playerTurn: playerTurn
   });    
 
   function resetChoices() {
-      $("#player1Choice").hide();
-      $("#player2Choice").hide();
+      playerTurn = "player1";
+      database.ref("Turn/").update({
+          playerTurn: playerTurn
+      });
+      // $("#player1Choice").hide();
+      // $("#player2Choice").hide();
       if (playerNumber == 1){
             $("#player1Choice").empty();
             $("#player2Choice").hide();
@@ -95,8 +104,6 @@
                 $("#player1Choice").hide();
                 $("#player2Choice").empty();
             }
-
-
       player2Choice = "";
       player1Choice = "";
       database.ref("Player1/").update({
@@ -110,6 +117,10 @@
   }
 
   function compareChoices() {
+        playerTurn = "";
+        database.ref("Turn/").update({
+            playerTurn: playerTurn
+        });
         if(player1Choice == player2Choice) {
             player1Message = "It's a tie. Choose rock, paper, or scissors to play again."
             player2Message = "It's a tie. Wait for player 1 to choose rock, paper, or scissors to play again."
@@ -210,10 +221,19 @@
   function startGame() {
       player1Message = "It is your turn. Choose rock, paper, or scissors."
       player2Message = "It is player 1's turn to choose rock, paper, or scissors."
+      playerTurn = "player1";
+      database.ref("Turn/").update({
+          playerTurn: playerTurn
+      });
       database.ref("Messages/").update({
           player1Message: player1Message,
           player2Message: player2Message
       });
+  }
+
+  function startTurn() {
+      $("#player1ScoreDiv").css("border", "2px solid green");
+      $("#player2ScoreDiv").css("border", "2px solid blue");
   }
 
 $(document).ready(function(){
@@ -321,12 +341,15 @@ $(document).ready(function(){
                 });
                 player1Message = "It is player 2's turn to choose rock, paper, or scissors."
                 player2Message = "It is your turn. Please choose rock, paper, or scissors."
+                playerTurn = "player2";
+                database.ref("Turn/").update({
+                    playerTurn: playerTurn
+                });
                 database.ref("Messages/").update({
                     player1Message: player1Message,
                     player2Message: player2Message
                 });
             } 
-            $("#message").html("It is player 2's turn to choose rock, paper, or scissors.");  
         }   else if (!player1Choice == "" && player2Choice == "") {
                 $("#player1Choice").show();
                 $("#player2Choice").show();
@@ -385,6 +408,20 @@ $(document).ready(function(){
         player2Message = snapshot.val().player2Message;
         $("#player1Message").html(player1Message);
         $("#player2Message").html(player2Message);
+    });
+
+    database.ref("Turn/").on('value', function(snapshot){
+        playerTurn = snapshot.val().playerTurn;
+        if (playerTurn == "player1") {
+              $("#player1ScoreDiv").css("border", "2px solid green");
+              $("#player2ScoreDiv").css("border", "2px solid blue");
+        }  else if (playerTurn == "player2") {
+              $("#player2ScoreDiv").css("border", "2px solid green");
+              $("#player1ScoreDiv").css("border", "2px solid blue");
+           }  else {
+                  $("#player1ScoreDiv").css("border", "2px solid blue");
+                  $("#player2ScoreDiv").css("border", "2px solid blue");
+              }
     });
 
 });//ends document.ready
