@@ -184,6 +184,18 @@
       $("#player2ScoreDiv").css("border", "2px solid blue");
   }
 
+  //when close or refresh browser, removes leaving player's data
+  window.onbeforeunload = function() {
+      if (playerNumber == 1) {
+          var player1Ref = database.ref("Player1/");
+          player1Ref.onDisconnect().remove();
+      }   
+          else if (playerNumber == 2) {
+              var player2Ref = database.ref("Player2/");
+              player2Ref.onDisconnect().remove();
+          }
+  }
+
 $(document).ready(function(){
 
     $("#submitName").on('click', function(event) {
@@ -394,43 +406,6 @@ $(document).ready(function(){
 
 });//ends document.ready
 
-
-
-    var player1Values;
-    var player2Values;
-
-    var player1Ref = database.ref("Player1/");
-    player1Ref.onDisconnect().remove();
-
-    var player2Ref = database.ref("Player2/");
-    player2Ref.onDisconnect().remove();
-
-
-
- //var playerLeft;
-
-  //when close or refresh browser
-  // window.onbeforeunload = function() {
-    
-    // console.log("1" + player1Name);
-    // console.log("2" + player2Name);
-      // if (playerNumber == 1) {
-      //     resetPlayer1();
-          //playerLeft = player1Name;
-      // }   
-      //     else if (playerNumber == 2) {
-      //         resetPlayer2();
-              //playerLeft = player2Name;
-          // }
-      // message = playerLeft + "has left the game."
-      // database.ref("Chats/").update({
-      //       message: messagingSenderId
-      // });
-
-      // if (playerNumber == 0) {
-      //     resetPlayer1();
-      //     resetPlayer2();
-      // }
-  // }
+ 
 
 
