@@ -42,6 +42,10 @@ h1 {
 	height: auto;
 }
 
+#messagesDiv {
+	height: 55px;
+}
+
 #player1Message, #player2Message, #message {
 	color: red;
 	text-align: center;
