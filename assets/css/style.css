@@ -32,7 +32,7 @@ h1 {
 	padding: 0;
 }
 
-.player1Options, .player2Options {
+.playerOptions {
 	width: 100%;
 	height: auto;
 }
@@ -42,10 +42,11 @@ h1 {
 	height: auto;
 }
 
-#message {
+#player1Message, #player2Message, #message {
 	color: red;
 	text-align: center;
 	font-size: 20px;
+	margin-bottom: 10px;
 }
 
 #player1Choice, #player2Choice {
@@ -87,7 +88,7 @@ h4 {
 	border: solid 2px blue;
 	margin: 0 auto 10px auto;
 	font-size: 20px;
-	padding: 10px;	
+	padding: 10px 20px 10px 20px;	
 }
 
 #chat, #chat2 {
@@ -110,6 +111,11 @@ h4 {
 
 #chatCorner2 {
 	display: none;
+	text-align: center;
+}
+
+.displayChatsDiv {
+	text-align: left;
 }
 
 #scoreDiv {
@@ -131,7 +137,7 @@ h4 {
 		text-align: center;
 	}
 
-	.player1Options, .player2Options {
+	.playerOptions {
 		width: 50%;
 	}
 
@@ -162,7 +168,7 @@ h4 {
 		text-align: center;
 	}
 
-	.player1Options, .player2Options {
+	.playerOptions {
 		width: 60%;
 	}
 
@@ -209,7 +215,7 @@ h4 {
 		width: 100%;
 		margin-left: auto;
 		margin-right: auto;
-		text-align: center;
+		/*text-align: center;*/
 	}
 
 	.score {
@@ -242,7 +248,7 @@ h4 {
 		text-align: center;
 	}
 
-	.player1Options, .player2Options {
+	.playerOptions {
 		width: 80%;
 	}
 
@@ -259,7 +265,7 @@ h4 {
 		width: 100%;
 		margin-left: auto;
 		margin-right: auto;
-		text-align: center;
+		/*text-align: center;*/
 	}
 
 }

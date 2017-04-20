@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>https://console.firebase.google.com/project/rps-multiplayer-2aff3/database/data
 
 <html>
 
@@ -25,25 +25,21 @@
 	  		<button type="submit" id="submitName" class="btn btn-default">Submit</button>
 	  	</div>
 
-		<div class="row optionsDiv" id="player1OptionsDiv">
+		<div class="row optionsDiv">
 			<div class="col-xs-4 col-lg-offset-2 col-lg-2">
-			    <img id="player1Rock" class="player1Options" value="rock" src="assets/images/rock.png">
+			    <img class="playerOptions" value="rock" src="assets/images/rock.png">
 			</div>
 			<div class="col-xs-4 col-lg-offset-1 col-lg-2">
-			    <img id="player1Paper" class="player1Options" value="paper" src="assets/images/paper.png">
+			    <img class="playerOptions" value="paper" src="assets/images/paper.png">
 			</div>
 			<div class="col-xs-4 col-lg-offset-1 col-lg-2">
-			    <img id="player1Scissors" class="player1Options" value="scissors" src="assets/images/scissors.png">
+			    <img class="playerOptions" value="scissors" src="assets/images/scissors.png">
 			</div>
 		</div>
 
-		<p id="message"> Choose rock, paper, or scissors! </p>
-
-		<div class="row">
-			<div class="col-xs-12" id="startOverDiv">
-				<button id="startOver" class="btn btn-default"> Reset Score </button>
-			</div>
-		</div>
+		<p id="message"> Enter your name to play.</p>
+		<p id="player1Message"></p>
+		<p id="player2Message"></p>
 		
 		<div class="row" id="gameRow">
 			<div class="col-xs-6 col-sm-3 col-lg-3">
@@ -63,7 +59,7 @@
 				 		<div id="displayChats" class="displayChats"></div>
 				 	</div>
 				 	<input type="text" id="chat" placeholder="type message here"/>
-			    	<button type="submit" class="submitChats" class="btn btn-default">Send Message</button>
+			    	<button type="submit" class="submitChats" class="btn btn-default" required>Send Message</button>
 				</div>
 			</div>
 		
@@ -86,7 +82,7 @@
 				 		<div id="displayChats2" class="displayChats"></div>
 				 	</div>
 				 	<input type="text" id="chat2" placeholder="type message here"/>
-			    	<button type="submit" class="submitChats2" class="btn btn-default">Send Message</button>
+			    	<button type="submit" class="submitChats2" class="btn btn-default" required>Send Message</button>
 				</div>
 			</div>
 		</div>
