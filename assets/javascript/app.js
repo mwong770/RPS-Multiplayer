@@ -1,17 +1,4 @@
 
-
-//after reset if next player enters name, scores reset??(always update score maybe???) or leave this part alone
-//reset score either resets entire game on both browsers or sends message that other player reset the score
-//check if chat working
-//placeholder missing on one input??
-//show image when make choice
-//ui design/fonts
-//trouble reading playerName.upperCase() around line 300
-//not showing other's choice 
-//take turns, message, and border
-//when refresh says if anyone on and waiting
-//person there keeps score
-
   //Initializes Firebase
   var config = {
       apiKey: "AIzaSyBWNxNBYOde4pP0aFD1biRlLXfTAFHlXnU",
@@ -46,6 +33,8 @@
 
   $("#player1Message").hide();
   $("#player2Message").hide();
+  $("#player1Choice").hide();
+  $("#player2Choice").hide();
 
   function resetPlayer1() {
       if (playerNumber == 1) {
@@ -97,8 +86,17 @@
   });    
 
   function resetChoices() {
-      $("#player1Choice").empty();
-      $("#player2Choice").empty();
+      $("#player1Choice").hide();
+      $("#player2Choice").hide();
+      if (playerNumber == 1){
+            $("#player1Choice").empty();
+            $("#player2Choice").hide();
+        }   else if (playerNumber == 2){
+                $("#player1Choice").hide();
+                $("#player2Choice").empty();
+            }
+
+
       player2Choice = "";
       player1Choice = "";
       database.ref("Player1/").update({
@@ -241,6 +239,7 @@ $(document).ready(function(){
                 });
                 $("#message").hide();
                 $("#player1Message").show();
+                $("#player1Choice").show();
                 $("#name").val("");
         }   else if (!player2 && playerNumber == 0) {
                 player2Name = $("#name").val().trim();
@@ -251,6 +250,7 @@ $(document).ready(function(){
                 });
                 $("#message").hide();
                 $("#player2Message").show();
+                $("#player2Choice").show();
                 database.ref("Player2/").update({
                     player2Name: player2Name,
                     player2Choice: "",
@@ -328,6 +328,8 @@ $(document).ready(function(){
             } 
             $("#message").html("It is player 2's turn to choose rock, paper, or scissors.");  
         }   else if (!player1Choice == "" && player2Choice == "") {
+                $("#player1Choice").show();
+                $("#player2Choice").show();
                 if (playerNumber == 2) {
                     player2Choice = $(this).attr('value');
                     $("#player2Choice").html(player2Choice);
