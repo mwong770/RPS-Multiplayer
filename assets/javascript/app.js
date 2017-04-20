@@ -37,66 +37,54 @@
   $("#player1Choice").hide();
   $("#player2Choice").hide();
 
-  function resetPlayer1() {
-      if (playerNumber == 1) {
-          $("#player1Message").hide();
-          $("#message").html("Enter your name to play.").show();
-      }
-      player1Name = "";
-      player1Choice = "";
-      player1Wins = 0;
-      player1Losses = 0;
-      player1Ties = 0;
-      database.ref("Player1/").update({
-          player1Name: player1Name,
-          player1Choice: player1Choice,
-          player1Wins: player1Wins,
-          player1Losses: player1Losses,
-          player1Ties: player1Ties,
-          gameOver: false
-      });
-  }
+  // function resetPlayer1() {
+  //     if (playerNumber == 1) {
+  //         $("#player1Message").hide();
+  //         $("#message").html("Enter your name to play.").show();
+  //     }
+  //     player1Name = "";
+  //     player1Choice = "";
+  //     player1Wins = 0;
+  //     player1Losses = 0;
+  //     player1Ties = 0;
+  //     database.ref("Player1/").update({
+  //         player1Name: player1Name,
+  //         player1Choice: player1Choice,
+  //         player1Wins: player1Wins,
+  //         player1Losses: player1Losses,
+  //         player1Ties: player1Ties,
+  //         gameOver: false
+  //     });
+  // }
 
-  function resetPlayer2() {
-    if (playerNumber == 2) {
-          $("#player2Message").hide();
-          $("#message").html("Enter your name to play.").show();
-      }
-      player2Name = "";
-      player2Choice = "";
-      player2Wins = 0;
-      player2Losses = 0;
-      player2Ties = 0;
-      database.ref("Player2/").update({
-          player2Name: player2Name,
-          player2Choice: player2Choice,
-          player2Wins: player2Wins,
-          player2Losses: player2Losses,
-          player2Ties: player2Ties,
-          gameOver: false
-      });
-  }
+  // function resetPlayer2() {
+  //   if (playerNumber == 2) {
+  //         $("#player2Message").hide();
+  //         $("#message").html("Enter your name to play.").show();
+  //     }
+  //     player2Name = "";
+  //     player2Choice = "";
+  //     player2Wins = 0;
+  //     player2Losses = 0;
+  //     player2Ties = 0;
+  //     database.ref("Player2/").update({
+  //         player2Name: player2Name,
+  //         player2Choice: player2Choice,
+  //         player2Wins: player2Wins,
+  //         player2Losses: player2Losses,
+  //         player2Ties: player2Ties,
+  //         gameOver: false
+  //     });
+  // }
 
-  database.ref("Chats/").update({
-      chat: chat
-  });
-    
-  database.ref("Messages/").update({
-      player1Message: player1Message,
-      player2Message: player2Message
-  });
-
-  database.ref("Turn/").update({
-      playerTurn: playerTurn
-  });    
-
+  
+  updateChats();
+  updateMessages();
+  updateTurn();
+     
   function resetChoices() {
       playerTurn = "player1";
-      database.ref("Turn/").update({
-          playerTurn: playerTurn
-      });
-      // $("#player1Choice").hide();
-      // $("#player2Choice").hide();
+      updateTurn();
       if (playerNumber == 1){
             $("#player1Choice").empty();
             $("#player2Choice").hide();
@@ -118,16 +106,11 @@
 
   function compareChoices() {
         playerTurn = "";
-        database.ref("Turn/").update({
-            playerTurn: playerTurn
-        });
+        updateTurn();
         if(player1Choice == player2Choice) {
             player1Message = "It's a tie. Choose rock, paper, or scissors to play again."
             player2Message = "It's a tie. Wait for player 1 to choose rock, paper, or scissors to play again."
-            database.ref("Messages/").update({
-                player1Message: player1Message,
-                player2Message: player2Message
-            });
+            updateMessages();
             player1Ties++;
             player2Ties++;
             database.ref("Player1/").update({
@@ -141,50 +124,32 @@
         } else if (player1Choice == "rock" && player2Choice == "paper") {
             player1Message = "Player 2 wins. Paper beats rock. Choose rock, paper, or scissors to play again."
             player2Message = "You win! Paper beats rock. Wait for player 1 to choose rock, paper, or scissors to play again."
-            database.ref("Messages/").update({
-                player1Message: player1Message,
-                player2Message: player2Message
-            });
+            updateMessages();
             player2Win();
         } else if(player1Choice == "rock" && player2Choice == "scissors"){
             player1Message = "You win! Rock beats scissors. Choose rock, paper, or scissors to play again."
             player2Message = "Player 1 wins. Rock beats scissors. Wait for player 1 to choose rock, paper, or scissors to play again."
-            database.ref("Messages/").update({
-                player1Message: player1Message,
-                player2Message: player2Message
-            });
+            updateMessages();
             player1Win();
         } else if(player1Choice == "scissors" && player2Choice == "paper"){
             player1Message = "You win! Scissors beats paper. Choose rock, paper, or scissors to play again."
             player2Message = "Player 1 wins. Scissors beats paper. Wait for player 1 to choose rock, paper, or scissors to play again."
-            database.ref("Messages/").update({
-                player1Message: player1Message,
-                player2Message: player2Message
-            });
+            updateMessages();
             player1Win();
         } else if(player1Choice == "scissors" && player2Choice == "rock") {
             player1Message = "Player 2 wins. Rock beats scissors. Choose rock, paper, or scissors to play again."
             player2Message = "You win! Rock beats scissors. Wait for player 1 to choose rock, paper, or scissors to play again."
-            database.ref("Messages/").update({
-                player1Message: player1Message,
-                player2Message: player2Message
-            });
+            updateMessages();
             player2Win();
         } else if (player1Choice == "paper" && player2Choice == "scissors") {
             player1Message = "Player 2 wins. Scissors beats paper. Choose rock, paper, or scissors to play again."
             player2Message = "You win! Scissors beats paper. Wait for player 1 to choose rock, paper, or scissors to play again."
-            database.ref("Messages/").update({
-                player1Message: player1Message,
-                player2Message: player2Message
-            });
+            updateMessages();
             player2Win();
         } else if(player1Choice == "paper" && player2Choice == "rock"){
             player1Message = "You win! Paper beats rock. Choose rock, paper, or scissors to play again."
             player2Message = "Player 1 wins. Paper beats rock. Wait for player 1 to choose rock, paper, or scissors to play again."
-            database.ref("Messages/").update({
-                player1Message: player1Message,
-                player2Message: player2Message
-            });
+            updateMessages();
             player1Win();
         } 
         setTimeout(resetChoices, 3000);
@@ -218,17 +183,31 @@
       });
   }
 
-  function startGame() {
-      player1Message = "It is your turn. Choose rock, paper, or scissors."
-      player2Message = "It is player 1's turn to choose rock, paper, or scissors."
-      playerTurn = "player1";
-      database.ref("Turn/").update({
-          playerTurn: playerTurn
-      });
+  function updateMessages() {
       database.ref("Messages/").update({
           player1Message: player1Message,
           player2Message: player2Message
       });
+  }
+
+  function updateTurn() {
+      database.ref("Turn/").update({
+          playerTurn: playerTurn
+      });
+  }
+
+  function updateChats() {
+      database.ref("Chats/").update({
+          chat: chat
+      });
+  }
+
+  function startGame() {
+      player1Message = "It is your turn. Choose rock, paper, or scissors."
+      player2Message = "It is player 1's turn to choose rock, paper, or scissors."
+      playerTurn = "player1";
+      updateTurn();
+      updateMessages();
   }
 
   function startTurn() {
@@ -342,13 +321,8 @@ $(document).ready(function(){
                 player1Message = "It is player 2's turn to choose rock, paper, or scissors."
                 player2Message = "It is your turn. Please choose rock, paper, or scissors."
                 playerTurn = "player2";
-                database.ref("Turn/").update({
-                    playerTurn: playerTurn
-                });
-                database.ref("Messages/").update({
-                    player1Message: player1Message,
-                    player2Message: player2Message
-                });
+                updateTurn();
+                updateMessages();
             } 
         }   else if (!player1Choice == "" && player2Choice == "") {
                 $("#player1Choice").show();
@@ -373,9 +347,7 @@ $(document).ready(function(){
             }   else if (playerNumber == 2) {
                     chat = player2Uppercase + ": " + $("#chat").val().trim();
                 }
-            database.ref("Chats/").update({
-                chat: chat
-            });
+            updateChats();
             $("#chat").val("");
         }
     });
@@ -389,9 +361,7 @@ $(document).ready(function(){
             }   else if (playerNumber == 2) {
                     chat = player2Uppercase + ": " + $("#chat2").val().trim();
                 }
-            database.ref("Chats/").update({
-                chat: chat
-            });
+            updateChats();
             $("#chat2").val("");
         }
     });
