@@ -1,3 +1,12 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	margin-bottom: 60px;
+}
+
 h1 {
 	text-align: center;
 	font-weight: bold;
@@ -127,6 +136,19 @@ h4 {
 	bottom: 10px;
 	left: 0px;
 	width: 100%;
+}
+
+footer {
+	position: absolute;
+	height: 60px;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+	background-color: blue;
+	left: 0;
+	right: 0;
+	padding-top: 20px;
+	color: white;
 }
 
 /************ MEDIA 1200 MEDIA 1200 MEDIA 1200 MEDIA 1200 MEDIA 1200 *******************************/

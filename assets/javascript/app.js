@@ -188,11 +188,11 @@
   window.onbeforeunload = function() {
       if (playerNumber == 1) {
           var player1Ref = database.ref("Player1/");
-          player1Ref.onDisconnect().remove();
+          player1Ref.remove();
       }   
           else if (playerNumber == 2) {
               var player2Ref = database.ref("Player2/");
-              player2Ref.onDisconnect().remove();
+              player2Ref.remove();
           }
   }
 
