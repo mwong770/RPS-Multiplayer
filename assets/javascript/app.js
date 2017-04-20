@@ -13,8 +13,8 @@
 
   var database = firebase.database();
  
-  var player1Name;
-  var player2Name;
+  var player1Name = "";
+  var player2Name = "";
   var player1Choice = "";
   var player2Choice = "";
   var player1Wins;
@@ -37,47 +37,6 @@
   $("#player1Choice").hide();
   $("#player2Choice").hide();
 
-  // function resetPlayer1() {
-  //     if (playerNumber == 1) {
-  //         $("#player1Message").hide();
-  //         $("#message").html("Enter your name to play.").show();
-  //     }
-  //     player1Name = "";
-  //     player1Choice = "";
-  //     player1Wins = 0;
-  //     player1Losses = 0;
-  //     player1Ties = 0;
-  //     database.ref("Player1/").update({
-  //         player1Name: player1Name,
-  //         player1Choice: player1Choice,
-  //         player1Wins: player1Wins,
-  //         player1Losses: player1Losses,
-  //         player1Ties: player1Ties,
-  //         gameOver: false
-  //     });
-  // }
-
-  // function resetPlayer2() {
-  //   if (playerNumber == 2) {
-  //         $("#player2Message").hide();
-  //         $("#message").html("Enter your name to play.").show();
-  //     }
-  //     player2Name = "";
-  //     player2Choice = "";
-  //     player2Wins = 0;
-  //     player2Losses = 0;
-  //     player2Ties = 0;
-  //     database.ref("Player2/").update({
-  //         player2Name: player2Name,
-  //         player2Choice: player2Choice,
-  //         player2Wins: player2Wins,
-  //         player2Losses: player2Losses,
-  //         player2Ties: player2Ties,
-  //         gameOver: false
-  //     });
-  // }
-
-  
   updateChats();
   updateMessages();
   updateTurn();
@@ -217,7 +176,9 @@
 
 $(document).ready(function(){
 
-    $("#submitName").on('click', function() {
+    $("#submitName").on('click', function(event) {
+        //prevents the submit button from trying to submit a form when clicked
+        event.preventDefault();
         database.ref("Player1/").once('value', function(snapshot){
             player1  = snapshot.val();
         });
@@ -227,39 +188,43 @@ $(document).ready(function(){
 
         if (!player1 && playerNumber == 0) {
                 player1Name = $("#name").val().trim();
-                playerNumber = 1;
-                database.ref("Player1/").update({
-                    player1Name: player1Name,
-                    player1Choice: "",
-                    player1Wins: 0,
-                    player1Losses: 0,
-                    player1Ties: 0,
-                    gameOver: false
-                });
-                $("#message").hide();
-                $("#player1Message").show();
-                $("#player1Choice").show();
-                $("#name").val("");
+                if (!player1Name == "") {
+                    playerNumber = 1;
+                    database.ref("Player1/").update({
+                        player1Name: player1Name,
+                        player1Choice: "",
+                        player1Wins: 0,
+                        player1Losses: 0,
+                        player1Ties: 0,
+                        gameOver: false
+                    });
+                    $("#message").hide();
+                    $("#player1Message").show();
+                    $("#player1Choice").show();
+                    $("#name").val("");
+                }
         }   else if (!player2 && playerNumber == 0) {
                 player2Name = $("#name").val().trim();
-                playerNumber = 2;
-                player1Message = "Player 2 has just joined the game."
-                database.ref("Messages/").update({
-                    player1Message: player1Message
-                });
-                $("#message").hide();
-                $("#player2Message").show();
-                $("#player2Choice").show();
-                database.ref("Player2/").update({
-                    player2Name: player2Name,
-                    player2Choice: "",
-                    player2Wins: 0,
-                    player2Losses: 0,
-                    player2Ties: 0,
-                    gameOver: false
-                });
-                $("#name").val("");
-            }   else {
+                if (!player2Name == "") {
+                    playerNumber = 2;
+                    player1Message = "Player 2 has just joined the game."
+                    database.ref("Messages/").update({
+                        player1Message: player1Message
+                    });
+                    $("#message").hide();
+                    $("#player2Message").show();
+                    $("#player2Choice").show();
+                    database.ref("Player2/").update({
+                        player2Name: player2Name,
+                        player2Choice: "",
+                        player2Wins: 0,
+                        player2Losses: 0,
+                        player2Ties: 0,
+                        gameOver: false
+                    });
+                    $("#name").val("");
+                }
+            }   else if (playerNumber == 0) {
                     $("#message").html("We already have 2 players. Please wait your turn.").show();
                 }
         if (playerNumber == 1){
@@ -338,31 +303,39 @@ $(document).ready(function(){
             }   
     });
 
-    $('.submitChats').on('click', function(){
-        if (!playerNumber == 0) {
-            var player1Uppercase = player1Name.toUpperCase();
-            var player2Uppercase = player2Name.toUpperCase();
-            if (playerNumber == 1) {
-                chat = player1Uppercase + ": " + $("#chat").val().trim();
-            }   else if (playerNumber == 2) {
-                    chat = player2Uppercase + ": " + $("#chat").val().trim();
-                }
-            updateChats();
-            $("#chat").val("");
+    $('.submitChats').on('click', function(event){
+        event.preventDefault();
+        chat = $("#chat").val().trim();
+        if (!chat == "") {
+            if (!playerNumber == 0) {
+                var player1Uppercase = player1Name.toUpperCase();
+                var player2Uppercase = player2Name.toUpperCase();
+                if (playerNumber == 1) {
+                    chat = player1Uppercase + ": " + chat;
+                }   else if (playerNumber == 2) {
+                        chat = player2Uppercase + ": " + chat;
+                    }
+                updateChats();
+                $("#chat").val("");
+            }
         }
     });
 
-    $('.submitChats2').on('click', function(){
-        if (!playerNumber == 0) {
-            var player1Uppercase = player1Name.toUpperCase();
-            var player2Uppercase = player2Name.toUpperCase();
-            if (playerNumber == 1) {
-                chat = player1Uppercase + ": " + $("#chat2").val().trim();
-            }   else if (playerNumber == 2) {
-                    chat = player2Uppercase + ": " + $("#chat2").val().trim();
-                }
-            updateChats();
-            $("#chat2").val("");
+    $('.submitChats2').on('click', function(event){
+        event.preventDefault();
+        chat = $("#chat2").val().trim();
+        if (!chat == "") {
+            if (!playerNumber == 0) {
+                var player1Uppercase = player1Name.toUpperCase();
+                var player2Uppercase = player2Name.toUpperCase();
+                if (playerNumber == 1) {
+                    chat = player1Uppercase + ": " + chat;
+                }   else if (playerNumber == 2) {
+                        chat = player2Uppercase + ": " + chat;
+                    }
+                updateChats();
+                $("#chat2").val("");
+            }
         }
     });
 

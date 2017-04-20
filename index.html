@@ -1,4 +1,4 @@
-<!DOCTYPE html>https://console.firebase.google.com/project/rps-multiplayer-2aff3/database/data
+<!DOCTYPE html>
 
 <html>
 
@@ -8,8 +8,10 @@
 
 	<!--link to Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!--link to stylesheets-->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!--link to Firebase-->
 	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
 </head>
@@ -20,10 +22,10 @@
 
 		<h1> Rock, Paper, Scissors </h1>
 
-		<div id="nameDiv">
-			<input type="text" id="name" placeholder="ex. Bob" />
+		<form id="nameDiv">
+			<input required autofocus type="text" id="name" placeholder="ex. Bob" />
 	  		<button type="submit" id="submitName" class="btn btn-default">Submit</button>
-	  	</div>
+	  	</form>
 
 		<div class="row optionsDiv">
 			<div class="col-xs-4 col-lg-offset-2 col-lg-2">
@@ -60,8 +62,10 @@
 				 		<h4>Chat Corner</h4>
 				 		<div id="displayChats" class="displayChats"></div>
 				 	</div>
-				 	<input type="text" id="chat" placeholder="type message here"/>
-			    	<button type="submit" class="submitChats" class="btn btn-default">Send Message</button>
+				 	<form>
+				 		<input required type="text" id="chat" placeholder="type message here"/>
+			    		<input type="submit" class="submitChats btn btn-default" name="submit" value="Send Message">
+			    	</form>
 				</div>
 			</div>
 		
@@ -83,8 +87,10 @@
 				 		<h4>Chat Corner</h4>
 				 		<div id="displayChats2" class="displayChats"></div>
 				 	</div>
-				 	<input type="text" id="chat2" placeholder="type message here"/>
-			    	<button type="submit" class="submitChats2" class="btn btn-default">Send Message</button>
+				 	<form>
+				 		<input required type="text" id="chat2" placeholder="type message here"/>
+			    		<input type="submit" class="submitChats2 btn btn-default" name="submit" value="Send Message">
+			    	</form>
 				</div>
 			</div>
 		</div>
