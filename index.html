@@ -5,7 +5,9 @@
 <head>
 
 	<title> RPS - Mulitiplayer </title>
-
+	
+	<!--link to Google Fonts-->
+	<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
 	<!--link to Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!--link to stylesheets-->
@@ -19,7 +21,7 @@
 <body>
 
 	<div class="container">
-
+		
 		<h1> Rock, Paper, Scissors </h1>
 
 		<form id="nameDiv">
@@ -50,7 +52,7 @@
 				<div  id="player1ScoreDiv">
 				 	<h4> <span id="player1Name"> Waiting for player 1 </span></h4>
 				 	<div id="player1Choice"></div>
-				 	<div id="scoreDiv">
+				 	<div class="scoreDiv">
 				 		<p class="scoreP">W: <span id='player1Wins' class="score">0 </span> L: <span id='player1Losses' class="score">0 </span> T: <span id='player1Ties'>0</span></p>
 				 	</div>
 				</div>
@@ -63,7 +65,7 @@
 				 		<div id="displayChats" class="displayChats"></div>
 				 	</div>
 				 	<form>
-				 		<input required type="text" id="chat" placeholder="type message here"/>
+				 		<input required type="text" id="chat" placeholder="talk smack here"/>
 			    		<input type="submit" class="submitChats btn btn-default" name="submit" value="Send Message">
 			    	</form>
 				</div>
@@ -73,7 +75,7 @@
 				<div  id="player2ScoreDiv">
 				 	<h4><span id="player2Name"> Waiting for player 2 </span></h4>
 				 	<div id="player2Choice"></div>
-					<div id="scoreDiv">
+					<div class="scoreDiv">
 				 		<p class="scoreP">W: <span id='player2Wins' class="score">0 </span> L: <span id='player2Losses' class="score">0 </span> T: <span id='player2Ties'>0</span></p>
 				 	</div>
 				</div>
@@ -88,7 +90,7 @@
 				 		<div id="displayChats2" class="displayChats"></div>
 				 	</div>
 				 	<form>
-				 		<input required type="text" id="chat2" placeholder="type message here"/>
+				 		<input required type="text" id="chat2" placeholder="talk smack here"/>
 			    		<input type="submit" class="submitChats2 btn btn-default" name="submit" value="Send Message">
 			    	</form>
 				</div>

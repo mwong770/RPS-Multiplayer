@@ -178,9 +178,9 @@
       updateMessages();
   }
 
-  //sets player1 div border to green and returns player 2 div to blue 
+  //sets player1 div border to purple and returns player 2 div to blue 
   function startTurn() {
-      $("#player1ScoreDiv").css("border", "2px solid green");
+      $("#player1ScoreDiv").css("border", "5px solid #B540B5");
       $("#player2ScoreDiv").css("border", "2px solid blue");
   }
 
@@ -393,10 +393,10 @@ $(document).ready(function(){
     database.ref("Turn/").on('value', function(snapshot){
         playerTurn = snapshot.val().playerTurn;
         if (playerTurn == "player1") {
-              $("#player1ScoreDiv").css("border", "2px solid green");
+              $("#player1ScoreDiv").css("border", "5px solid #B540B5");
               $("#player2ScoreDiv").css("border", "2px solid blue");
         }  else if (playerTurn == "player2") {
-              $("#player2ScoreDiv").css("border", "2px solid green");
+              $("#player2ScoreDiv").css("border", "5px solid #B540B5");
               $("#player1ScoreDiv").css("border", "2px solid blue");
            }  else {
                   $("#player1ScoreDiv").css("border", "2px solid blue");
