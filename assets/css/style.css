@@ -24,15 +24,35 @@ h1 {
 
 #name {
 	width: 220px;
-	height: 35px;
+	height: 34px;
 	padding-left: 10px;
 	font-size: 18px;
 	background-color: #DEEFB7;
 }
 
-#submitName, .submitChats, .submitChats2 {
+#submitName {
+	margin-top: -4px;
+}
+
+button {
 	font-size: 17px;
 	padding: 4px;
+	background-color: #B540B5;
+	color: #DEEFB7;
+}
+
+#submitName:hover, .submitChats:hover, .submitChats2:hover {
+	background-color: #DEEFB7;
+	color: #B540B5;
+	border: 1px solid #B540B5;
+}
+
+#submitName:active, .submitChats:active, .submitChats2:active {
+	background-color: #B540B5;
+	color: #DEEFB7;
+}
+
+#submitName:focus, .submitChats: focus, .submitChats2:focus {
 	background-color: #B540B5;
 	color: #DEEFB7;
 }
@@ -49,11 +69,25 @@ h1 {
 .playerOptions {
 	width: 100%;
 	height: auto;
+	transition: .2s ease-out;
 }
 
 #scissors {
 	width: 100%;
 	height: auto;
+	transition: .2s ease-out;
+}
+
+.playerOptions:hover {
+	transform: scale(1.1);
+}
+
+.playerOptions:active {
+	filter: drop-shadow(0px 0px 20px #DEEFB7);
+}
+
+#scissors:active {
+	filter: drop-shadow(0px 0px 40px #DEEFB7);
 }
 
 #messagesDiv {
