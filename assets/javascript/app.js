@@ -1,10 +1,3 @@
-  
-// $(".player1ChoiceImg").attr("src", "assets/images/scissors.png").attr("id", "scissorsImg");
-$(".player1ChoiceImg").attr("src", "assets/images/rock.png").attr("id", "rockImg");
-$(".player2ChoiceImg").attr("src", "assets/images/paper.png").attr("id", "paperImg");
-
-
-
 
   //Initializes Firebase
   var config = {
