@@ -10,7 +10,7 @@ body {
 }
 
 h1 {
-	font-family: 'Luckiest Guy', cursive;;
+	font-family: 'Luckiest Guy', cursive;
 	text-align: center;
 	color: #970094;
 	font-size: 70px;
@@ -101,10 +101,26 @@ button {
 	margin-bottom: 10px;
 }
 
-#player1Choice, #player2Choice {
-	height: 90px;
-	width: 100%;
-	overflow: visible;
+#player1ChoiceImg, #player2ChoiceImg {
+	border: none;
+}
+
+#paperImg { 
+	height: 100px;
+	margin-top: 1px;
+	width: auto;
+}
+
+#rockImg { 
+	height: 60px;
+	margin-top: 18px;
+	width: auto;
+}
+
+#scissorsImg { 
+	height: 50px;
+	margin-top: 20px;
+	width: auto;
 }
 
 .score {
@@ -204,6 +220,18 @@ footer {
 		font-size: 20px;
 	}
 
+	#paperImg { 
+		margin-top: -7px;
+	}
+
+	#rockImg { 
+		margin-top: 18px;
+	}
+
+	#scissorsImg { 
+		margin-top: 15px;
+	}
+
 }
 
 /************ MEDIA 980 MEDIA 980 MEDIA 980 MEDIA 980 MEDIA 980 *******************************/
@@ -232,6 +260,20 @@ footer {
 
 	.score {
 		margin-right: 3%;
+	}
+
+	#paperImg { 
+		height: 90px;
+		margin-top: -9px;
+	}
+
+	#rockImg { 
+		height: 55px;
+	}
+
+	#scissorsImg { 
+		height: 45px;
+		margin-top: 14px;
 	}
 
 }
@@ -281,6 +323,21 @@ footer {
 		font-size: 48px;
 	}
 
+	#paperImg { 
+		height: 100px;
+		margin-top: 1px;
+	}
+
+	#rockImg { 
+		height: 60px;
+		margin-top: 18px;
+	}
+
+	#scissorsImg { 
+		height: 50px;
+		margin-top: 20px;
+	}
+
 }
 
 /************ MEDIA 520 MEDIA 520 MEDIA 520 MEDIA 520 MEDIA 520 *******************************/
@@ -305,6 +362,20 @@ footer {
 
 	h4 {
 		font-size: 20px;
+	}
+
+	#paperImg { 
+		height: 90px;
+		margin-top: 0px;
+	}
+
+	#rockImg { 
+		height: 55px;
+	}
+
+	#scissorsImg { 
+		height: 45px;
+		margin-top: 23px;
 	}
 
 	#chatCorner2 {

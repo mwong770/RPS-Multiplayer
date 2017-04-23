@@ -1,3 +1,10 @@
+  
+// $(".player1ChoiceImg").attr("src", "assets/images/scissors.png").attr("id", "scissorsImg");
+$(".player1ChoiceImg").attr("src", "assets/images/rock.png").attr("id", "rockImg");
+$(".player2ChoiceImg").attr("src", "assets/images/paper.png").attr("id", "paperImg");
+
+
+
 
   //Initializes Firebase
   var config = {
@@ -34,8 +41,8 @@
 
   $("#player1Message").hide();
   $("#player2Message").hide();
-  $("#player1Choice").hide();
-  $("#player2Choice").hide();
+  $("#player1ChoiceImg").hide();
+  $("#player2ChoiceImg").hide();
 
   //updates values in Firebase
   updateChats();
@@ -48,11 +55,11 @@
       updateTurn();
       //removes last choice made from browser
       if (playerNumber == 1){
-            $("#player1Choice").empty();
-            $("#player2Choice").hide();
+            $(".player1ChoiceImg").attr("src", "").attr("id", "");
+            $(".player2ChoiceImg").attr("src", "").attr("id", "").hide();
         }   else if (playerNumber == 2){
-                $("#player1Choice").hide();
-                $("#player2Choice").empty();
+                $(".player1ChoiceImg").attr("src", "").attr("id", "").hide();
+                $(".player2ChoiceImg").attr("src", "").attr("id", "");
             }
       //removes last choice from Firebase
       player2Choice = "";
@@ -223,7 +230,7 @@ $(document).ready(function(){
                     });
                     $("#message").hide();
                     $("#player1Message").show();
-                    $("#player1Choice").show();
+                    $(".player1ChoiceImg").show();
                     $("#name").val("");
                 }
         //if no player2, assigns name inputted to player1 and sets initial player 1 values
@@ -237,7 +244,7 @@ $(document).ready(function(){
                     });
                     $("#message").hide();
                     $("#player2Message").show();
-                    $("#player2Choice").show();
+                    $(".player2ChoiceImg").show();
                     database.ref("Player2/").update({
                         player2Name: player2Name,
                         player2Choice: "",
@@ -258,6 +265,7 @@ $(document).ready(function(){
             $('#player1Name').html("Hello, " + player1Name);
         }   else if (playerNumber == 2){
                 $("#player2Name").html("Hello, " + player2Name);
+                $('#player1Name').html("Player 1 is " + player1Name);
             }
         //calls startGame function if both players assigned
         if (!player1Name == "" && !player2Name == "") {
@@ -270,7 +278,13 @@ $(document).ready(function(){
         if (player1Choice == "" && player2Choice == "") {
             if (playerNumber == 1) {
                 player1Choice = $(this).attr('value');
-                $("#player1Choice").html(player1Choice);
+                if (player1Choice == "scissors") {
+                    $(".player1ChoiceImg").attr("src", "assets/images/scissors.png").attr("id", "scissorsImg");
+                }  else if (player1Choice == "rock") {
+                      $(".player1ChoiceImg").attr("src", "assets/images/rock.png").attr("id", "rockImg");
+                   }  else if (player1Choice == "paper") {
+                          $(".player1ChoiceImg").attr("src", "assets/images/paper.png").attr("id", "paperImg");
+                      }
                 database.ref("Player1/").update({
                     player1Choice: player1Choice
                 });
@@ -283,11 +297,17 @@ $(document).ready(function(){
             //assigns choice to player2 if player 1 choice made and not player 2 choice
             //calls function to compare choices
         }   else if (!player1Choice == "" && player2Choice == "") {
-                $("#player1Choice").show();
-                $("#player2Choice").show();
+                $(".player1ChoiceImg").show();
+                $(".player2ChoiceImg").show();
                 if (playerNumber == 2) {
                     player2Choice = $(this).attr('value');
-                    $("#player2Choice").html(player2Choice);
+                    if (player2Choice == "scissors") {
+                        $(".player2ChoiceImg").attr("src", "assets/images/scissors.png").attr("id", "scissorsImg");
+                    }  else if (player2Choice == "rock") {
+                          $(".player2ChoiceImg").attr("src", "assets/images/rock.png").attr("id", "rockImg");
+                       }  else if (player2Choice == "paper") {
+                              $(".player2ChoiceImg").attr("src", "assets/images/paper.png").attr("id", "paperImg");
+                          }
                     database.ref("Player2/").update({
                         player2Choice: player2Choice
                     });
@@ -341,7 +361,9 @@ $(document).ready(function(){
             $('#player1Name').html("Waiting for player 1");
         }   else {
                 player1Name = player1Values.player1Name;
-                $("#player1Name").html("Player 1 is " + player1Name);
+                if (playerNumber == 2) {
+                    $("#player1Name").html("Player 1 is " + player1Name);
+                }
                 player1Choice = player1Values.player1Choice;
                 player1Wins = player1Values.player1Wins;
                 player1Losses = player1Values.player1Losses;
@@ -349,7 +371,15 @@ $(document).ready(function(){
                 $('#player1Ties').html(player1Ties);
                 $('#player1Wins').html(player1Wins);
                 $('#player1Losses').html(player1Losses);
-                $("#player1Choice").html(player1Choice);
+                if (player1Choice == "scissors") {
+                    $(".player1ChoiceImg").attr("src", "assets/images/scissors.png").attr("id", "scissorsImg");
+                }  else if (player1Choice == "rock") {
+                      $(".player1ChoiceImg").attr("src", "assets/images/rock.png").attr("id", "rockImg");
+                   }  else if (player1Choice == "paper") {
+                          $(".player1ChoiceImg").attr("src", "assets/images/paper.png").attr("id", "paperImg");
+                      }   else if (player1Choice == "") {
+                              $(".player1ChoiceImg").attr("src", "").attr("id", "");
+                          }
             }
     });
 
@@ -360,7 +390,9 @@ $(document).ready(function(){
             $('#player2Name').html("Waiting for player 2");
         }   else {
                 player2Name = player2Values.player2Name;
-                $("#player2Name").html("Player 2 is " + player2Name);
+                if (playerNumber == 1) {
+                    $("#player2Name").html("Player 2 is " + player2Name);
+                }
                 player2Choice = player2Values.player2Choice;
                 player2Wins = player2Values.player2Wins;
                 player2Losses = player2Values.player2Losses;
@@ -368,7 +400,15 @@ $(document).ready(function(){
                 $('#player2Ties').html(player2Ties);
                 $('#player2Wins').html(player2Wins);
                 $('#player2Losses').html(player2Losses);
-                $("#player2Choice").html(player2Choice);
+                if (player2Choice == "scissors") {
+                        $(".player2ChoiceImg").attr("src", "assets/images/scissors.png").attr("id", "scissorsImg");
+                    }  else if (player2Choice == "rock") {
+                          $(".player2ChoiceImg").attr("src", "assets/images/rock.png").attr("id", "rockImg");
+                       }  else if (player2Choice == "paper") {
+                              $(".player2ChoiceImg").attr("src", "assets/images/paper.png").attr("id", "paperImg");
+                          }   else if (player2Choice == "") {
+                                  $(".player2ChoiceImg").attr("src", "").attr("id", "");
+                              }
             }
     });
 
