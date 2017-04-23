@@ -31,6 +31,9 @@
   var player2;
   var player1;
   var playerTurn = "";
+  var rockSound = document.getElementById("rockSound");
+  var paperSound = document.getElementById("paperSound");
+  var scissorsSound = document.getElementById("scissorsSound");
 
   $("#player1Message").hide();
   $("#player2Message").hide();
@@ -184,6 +187,12 @@
       $("#player2ScoreDiv").css("border", "2px solid blue");
   }
 
+  //plays sounds to be used when options clicked or user wins
+  function sound(soundFile) {
+    soundFile.loop = false;
+        soundFile.play();
+  }
+
   //when close or refresh browser, removes leaving player's data
   window.onbeforeunload = function() {
       if (playerNumber == 1) {
@@ -273,10 +282,13 @@ $(document).ready(function(){
                 player1Choice = $(this).attr('value');
                 if (player1Choice == "scissors") {
                     $(".player1ChoiceImg").attr("src", "assets/images/scissors.png").attr("id", "scissorsImg");
+                    sound(scissorsSound);
                 }  else if (player1Choice == "rock") {
                       $(".player1ChoiceImg").attr("src", "assets/images/rock.png").attr("id", "rockImg");
+                      sound(rockSound);
                    }  else if (player1Choice == "paper") {
                           $(".player1ChoiceImg").attr("src", "assets/images/paper.png").attr("id", "paperImg");
+                          sound(paperSound);
                       }
                 database.ref("Player1/").update({
                     player1Choice: player1Choice
@@ -296,10 +308,13 @@ $(document).ready(function(){
                     player2Choice = $(this).attr('value');
                     if (player2Choice == "scissors") {
                         $(".player2ChoiceImg").attr("src", "assets/images/scissors.png").attr("id", "scissorsImg");
+                        sound(scissorsSound);
                     }  else if (player2Choice == "rock") {
                           $(".player2ChoiceImg").attr("src", "assets/images/rock.png").attr("id", "rockImg");
+                          sound(rockSound);
                        }  else if (player2Choice == "paper") {
                               $(".player2ChoiceImg").attr("src", "assets/images/paper.png").attr("id", "paperImg");
+                              sound(paperSound);
                           }
                     database.ref("Player2/").update({
                         player2Choice: player2Choice
