@@ -45,7 +45,7 @@ An interactive Firebase game in which two players try to choose an object that w
 * When a player chooses an object, the object moves to the side of the screen with the player's name
 * Players can see both chosen objects, but players can only see their opponent's chosen object after both players have made their choices
 * Players see a message indicating which player won and which player's turn it is to choose another object
-* Playeres see their and their opponent's wins, losses and ties 
+* Players see their and their opponent's wins, losses and ties 
 * Players can continue playing until one player closes his or her browser
 * When a player leaves the game, the remaining player sees a message that reads "Waiting for Player" 
 * Players can type comments that are displayed to both players and indicate the name of the player who typed the comment
