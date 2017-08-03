@@ -1,6 +1,6 @@
 # RPS-Multiplayer (Rock, Paper, Scissors)
 
-An interactive Firebase game in which two players try to choose an object that will destroy their opponent's object of choice
+An interactive Firebase game 
 
 [Check Out Rock, Paper, Scissors - Multiplayer](https://mwong770.github.io/RPS-Multiplayer/)
 
