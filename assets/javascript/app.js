@@ -93,12 +93,12 @@
             player2Message = "You win! Paper beats rock. Wait for player 1 to choose rock, paper, or scissors to play again."
             updateMessages();
             player2Win();
-        } else if (player1Choice === "rock" && player2Choice === "scissors"){
+        } else if (player1Choice === "rock" && player2Choice === "scissors") {
             player1Message = "You win! Rock beats scissors. Choose rock, paper, or scissors to play again."
             player2Message = "Player 1 wins. Rock beats scissors. Wait for player 1 to choose rock, paper, or scissors to play again."
             updateMessages();
             player1Win();
-        } else if (player1Choice === "scissors" && player2Choice === "paper"){
+        } else if (player1Choice === "scissors" && player2Choice === "paper") {
             player1Message = "You win! Scissors beats paper. Choose rock, paper, or scissors to play again."
             player2Message = "Player 1 wins. Scissors beats paper. Wait for player 1 to choose rock, paper, or scissors to play again."
             updateMessages();
@@ -113,7 +113,7 @@
             player2Message = "You win! Scissors beats paper. Wait for player 1 to choose rock, paper, or scissors to play again."
             updateMessages();
             player2Win();
-        } else if (player1Choice === "paper" && player2Choice === "rock"){
+        } else if (player1Choice === "paper" && player2Choice === "rock") {
             player1Message = "You win! Paper beats rock. Choose rock, paper, or scissors to play again."
             player2Message = "Player 1 wins. Paper beats rock. Wait for player 1 to choose rock, paper, or scissors to play again."
             updateMessages();
