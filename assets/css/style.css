@@ -5,12 +5,12 @@ html {
 
 body {
 	margin-bottom: 60px;
-	font-family: 'Dosis', sans-serif;
+	font-family: "Dosis", sans-serif;
 	background: url("../images/background.jpg") no-repeat;
 }
 
 h1 {
-	font-family: 'Luckiest Guy', cursive;
+	font-family: "Luckiest Guy", cursive;
 	text-align: center;
 	color: #970094;
 	font-size: 70px;
