@@ -167,6 +167,8 @@
 
   //updates chat text in Firebase
   function updateChats() {
+      console.log('inside update chats ln 170');
+      console.log("chat 171: " + chat);
       database.ref("Chats/").update({
           chat: chat
       });
@@ -220,7 +222,7 @@ $(document).ready(function(){
         //if no player1, assigns name inputted to player1 and sets initial player 1 values
         if (!player1 && playerNumber === 0) {
                 player1Name = $("#name").val().trim();
-                if (!player1Name === "") {
+                if (!player1Name == "") {
                     playerNumber = 1;
                     database.ref("Player1/").update({
                         player1Name: player1Name,
@@ -238,7 +240,7 @@ $(document).ready(function(){
         //if no player2, assigns name inputted to player1 and sets initial player 1 values
         }   else if (!player2 && playerNumber === 0) {
                 player2Name = $("#name").val().trim();
-                if (!player2Name === "") {
+                if (!player2Name == "") {
                     playerNumber = 2;
                     player1Message = "Player 2 has just joined the game."
                     database.ref("Messages/").update({
@@ -270,14 +272,14 @@ $(document).ready(function(){
                 $("#player1Name").html("Player 1 is " + player1Name);
             }
         //calls startGame function if both players assigned
-        if (!player1Name === "" && !player2Name === "") {
+        if (!player1Name == "" && !player2Name == "") {
             startGame();
         }
     });
 
     $(".playerOptions").on("click", function(){
         //assigns choice to player1 if no choices made
-        if (player1Choice === "" && player2Choice === "") {
+        if (player1Choice == "" && player2Choice == "") {
             if (playerNumber === 1) {
                 player1Choice = $(this).attr("value");
                 if (player1Choice === "scissors") {
@@ -301,7 +303,7 @@ $(document).ready(function(){
             }
             //assigns choice to player2 if player 1 choice made and not player 2 choice
             //calls function to compare choices
-        }   else if (!player1Choice === "" && player2Choice === "") {
+        }   else if (!player1Choice == "" && player2Choice == "") {
                 $(".player1ChoiceImg").show();
                 $(".player2ChoiceImg").show();
                 if (playerNumber === 2) {
@@ -328,13 +330,20 @@ $(document).ready(function(){
     $(".submitChats").on("click", function(event){
         event.preventDefault();
         chat = $("#chat").val().trim();
-        if (!chat === "") {
-            if (!playerNumber === 0) {
+        console.log("chat on line 335: " + chat);
+        if (!chat == "") {
+            console.log("inside if chat not empty ln 335");
+            console.log("chat 336: " + chat);
+            console.log("PlayerNumber ln 337: " + playerNumber);
+            if (!playerNumber == 0) {
+                console.log("inside is not playernumber 0");
                 var player1Uppercase = player1Name.toUpperCase();
                 var player2Uppercase = player2Name.toUpperCase();
-                if (playerNumber === 1) {
+                if (playerNumber == 1) {
+                    console.log("inside if playernumber is 1 ln 343");
                     chat = player1Uppercase + ": " + chat;
-                }   else if (playerNumber === 2) {
+                }   else if (playerNumber == 2) {
+                        console.log("inside if player number is 2 line 346");
                         chat = player2Uppercase + ": " + chat;
                     }
                 updateChats();
@@ -347,7 +356,7 @@ $(document).ready(function(){
     $(".submitChats2").on("click", function(event){
         event.preventDefault();
         chat = $("#chat2").val().trim();
-        if (!chat === "") {
+        if (!chat == "") {
             if (!playerNumber === 0) {
                 var player1Uppercase = player1Name.toUpperCase();
                 var player2Uppercase = player2Name.toUpperCase();
@@ -385,7 +394,7 @@ $(document).ready(function(){
                       $(".player1ChoiceImg").attr("src", "assets/images/rock.png").attr("id", "rockImg");
                    }  else if (player1Choice === "paper") {
                           $(".player1ChoiceImg").attr("src", "assets/images/paper.png").attr("id", "paperImg");
-                      }   else if (player1Choice === "") {
+                      }   else if (player1Choice == "") {
                               $(".player1ChoiceImg").attr("src", "").attr("id", "");
                           }
             }
@@ -414,7 +423,7 @@ $(document).ready(function(){
                           $(".player2ChoiceImg").attr("src", "assets/images/rock.png").attr("id", "rockImg");
                        }  else if (player2Choice === "paper") {
                               $(".player2ChoiceImg").attr("src", "assets/images/paper.png").attr("id", "paperImg");
-                          }   else if (player2Choice === "") {
+                          }   else if (player2Choice == "") {
                                   $(".player2ChoiceImg").attr("src", "").attr("id", "");
                               }
             }
@@ -423,7 +432,9 @@ $(document).ready(function(){
     //updates browser when chat text stored in Firebase changes
     //adds automatic scroll to chat display div so always see latest chat
     database.ref("Chats/").on("value", function(snapshot){
+        console.log("in databsase ref chats line 433");
         chat = snapshot.val().chat + "<br/>";
+        console.log("chat 435: " + chat)
         $(".displayChats").append(chat);
         element = document.getElementById("displayChats2");
         element.scrollTop = element.scrollHeight;
