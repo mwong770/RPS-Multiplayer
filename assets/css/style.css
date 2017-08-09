@@ -57,6 +57,10 @@ button {
 	color: #DEEFB7;
 }
 
+.player2ChoiceImg, .player2ChoiceImg {
+	border: none;
+}
+
 .submitChats, .submitChats2 {
 	margin-bottom: 20px;
 }

@@ -247,6 +247,7 @@ $(document).ready(function(){
                         player1Message: player1Message
                     });
                     $("#message").hide();
+                    $(".player1ChoiceImg").hide();
                     $("#player2Message").show();
                     $(".player2ChoiceImg").show();
                     database.ref("Player2/").update({
