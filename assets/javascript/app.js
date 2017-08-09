@@ -50,7 +50,7 @@
       playerTurn = "player1";
       updateTurn();
       //removes last choice made from browser
-      if (playerNumber === 1){
+      if (playerNumber === 1) {
             $(".player1ChoiceImg").attr("src", "").attr("id", "");
             $(".player2ChoiceImg").attr("src", "").attr("id", "").hide();
         }   else if (playerNumber === 2){
@@ -207,7 +207,7 @@
           }
   }
 
-$(document).ready(function(){
+$(document).ready(function() {
 
     $("#submitName").on("click", function(event) {
         //prevents the submit button from trying to submit a form when clicked
@@ -266,7 +266,7 @@ $(document).ready(function(){
                     $("#message").html("We already have 2 players. Please wait your turn.").show();
                 }
         //displays player names based on player number
-        if (playerNumber === 1){
+        if (playerNumber === 1) {
             $("#player1Name").html("Hello, " + player1Name);
         }   else if (playerNumber === 2) {
                 $("#player2Name").html("Hello, " + player2Name);
@@ -328,7 +328,7 @@ $(document).ready(function(){
     });
 
     //updates in Firebase chats inputted in larger browsers
-    $(".submitChats").on("click", function(event){
+    $(".submitChats").on("click", function(event) {
         event.preventDefault();
         chat = $("#chat").val().trim();
         console.log("chat on line 335: " + chat);
@@ -354,7 +354,7 @@ $(document).ready(function(){
     });
 
     //updates in Firebase chats inputted in smaller browsers
-    $(".submitChats2").on("click", function(event){
+    $(".submitChats2").on("click", function(event) {
         event.preventDefault();
         chat = $("#chat2").val().trim();
         if (chat !== "") {
@@ -402,7 +402,7 @@ $(document).ready(function(){
     });
 
     //updates browser when player 2 values stored in Firebase change
-    database.ref("Player2/").on("value", function(snapshot){
+    database.ref("Player2/").on("value", function(snapshot) {
         player2Values = snapshot.val();
         if (!player2Values) {
             $("#player2Name").html("Waiting for player 2");
@@ -432,7 +432,7 @@ $(document).ready(function(){
 
     //updates browser when chat text stored in Firebase changes
     //adds automatic scroll to chat display div so always see latest chat
-    database.ref("Chats/").on("value", function(snapshot){
+    database.ref("Chats/").on("value", function(snapshot) {
         console.log("in databsase ref chats line 433");
         chat = snapshot.val().chat + "<br/>";
         console.log("chat 435: " + chat)
@@ -442,7 +442,7 @@ $(document).ready(function(){
     });
 
     //updates browser when message text stored in Firebase changes
-    database.ref("Messages/").on("value", function(snapshot){
+    database.ref("Messages/").on("value", function(snapshot) {
         player1Message = snapshot.val().player1Message;
         player2Message = snapshot.val().player2Message;
         $("#player1Message").html(player1Message);

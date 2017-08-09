@@ -6,14 +6,14 @@
 
 	<title> RPS - Mulitiplayer </title>
 	
-	<!--link to Google Fonts-->
+	<!--Link to Google Fonts-->
 	<link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
-	<!--link to Bootstrap-->
+	<!--Link to Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <!--link to stylesheets-->
+    <!--Link to stylesheets-->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<!--link to Firebase-->
+	<!--Link to Firebase-->
 	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
 </head>
@@ -25,7 +25,7 @@
 		<h1> Rock, Paper, Scissors </h1>
 
 		<form id="nameDiv">
-			<input required autofocus type="text" id="name" placeholder="ex. Cool Kat"/>
+			<input required autofocus type="text" id="name" placeholder="Enter Name Here"/>
 	  		<button type="submit" id="submitName" class="btn"> Submit </button>
 	  	</form>
 
@@ -42,7 +42,7 @@
 		</div>
 
 		<div id="messagesDiv">
-			<p id="message"> Enter your name to play.</p>
+			<p id="message"> Enter your name to play. </p>
 			<p id="player1Message"> </p>
 			<p id="player2Message"> </p>
 		</div>
@@ -51,7 +51,7 @@
 			<div class="col-xs-6 col-sm-3 col-lg-3">
 				<div  id="player1ScoreDiv">
 				 	<h4> <span id="player1Name"> Waiting for player 1 </span></h4>
-				 		<img class="player1ChoiceImg" src="">
+				 	<img class="player1ChoiceImg" src="">
 				 	<div class="scoreDiv">
 				 		<p class="scoreP"> W: <span id="player1Wins" class="score"> 0 </span> L: <span id="player1Losses" class="score"> 0 </span> T: <span id="player1Ties"> 0 </span></p>
 				 	</div>
@@ -74,7 +74,7 @@
 			<div class="col-xs-6 col-sm-3 col-lg-3">
 				<div  id="player2ScoreDiv">
 				 	<h4><span id="player2Name"> Waiting for player 2 </span></h4>
-				 		<img class="player2ChoiceImg" src="">
+				 	<img class="player2ChoiceImg" src="">
 					<div class="scoreDiv">
 				 		<p class="scoreP"> W: <span id="player2Wins" class="score"> 0 </span> L: <span id="player2Losses" class="score"> 0 </span> T: <span id="player2Ties"> 0 </span></p>
 				 	</div>

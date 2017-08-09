@@ -1,3 +1,4 @@
+
 html {
 	position: relative;
 	min-height: 100%;
@@ -55,10 +56,6 @@ button {
 #submitName:focus, .submitChats: focus, .submitChats2:focus {
 	background-color: #B540B5;
 	color: #DEEFB7;
-}
-
-.player2ChoiceImg, .player2ChoiceImg {
-	border: none;
 }
 
 .submitChats, .submitChats2 {
@@ -121,6 +118,12 @@ button {
 	height: 50px;
 	margin-top: 20px;
 	width: auto;
+}
+
+/*prevents border when choice hidden*/
+.player1ChoiceImg, .player2ChoiceImg {
+	height: 0;
+	width: 0;
 }
 
 .score {
