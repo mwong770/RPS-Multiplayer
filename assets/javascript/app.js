@@ -167,8 +167,6 @@
 
   //updates chat text in Firebase
   function updateChats() {
-      console.log('inside update chats ln 170');
-      console.log("chat 171: " + chat);
       database.ref("Chats/").update({
           chat: chat
       });
@@ -331,20 +329,13 @@ $(document).ready(function() {
     $(".submitChats").on("click", function(event) {
         event.preventDefault();
         chat = $("#chat").val().trim();
-        console.log("chat on line 335: " + chat);
         if (chat !== "") {
-            console.log("inside if chat not empty ln 335");
-            console.log("chat 336: " + chat);
-            console.log("PlayerNumber ln 337: " + playerNumber);
             if (playerNumber !== 0) {
-                console.log("inside is not playernumber 0");
                 var player1Uppercase = player1Name.toUpperCase();
                 var player2Uppercase = player2Name.toUpperCase();
                 if (playerNumber === 1) {
-                    console.log("inside if playernumber is 1 ln 343");
                     chat = player1Uppercase + ": " + chat;
                 }   else if (playerNumber === 2) {
-                        console.log("inside if player number is 2 line 346");
                         chat = player2Uppercase + ": " + chat;
                     }
                 updateChats();
@@ -433,9 +424,7 @@ $(document).ready(function() {
     //updates browser when chat text stored in Firebase changes
     //adds automatic scroll to chat display div so always see latest chat
     database.ref("Chats/").on("value", function(snapshot) {
-        console.log("in databsase ref chats line 433");
         chat = snapshot.val().chat + "<br/>";
-        console.log("chat 435: " + chat)
         $(".displayChats").append(chat);
         element = document.getElementById("displayChats2");
         element.scrollTop = element.scrollHeight;
